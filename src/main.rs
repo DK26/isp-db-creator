@@ -67,21 +67,31 @@ fn main() {
     // Options
     // =======
     // 1. Extract `ripe.db.gz` / `ripe.db`
-    // 2. Download RIPE: https://ftp.ripe.net/ripe/dbase/ripe.db.gz
+    // 2. Download: 
+    //      - https://ftp.ripe.net/ripe/dbase/ripe.db.gz
+    //      - https://ftp.afrinic.net/pub/dbase/afrinic.db.gz
+    //      - https://ftp.apnic.net/pub/apnic/whois/apnic.db.inetnum.gz
+    //      - https://ftp.apnic.net/pub/apnic/whois/apnic.db.inet6num.gz
+    //      - ftp://ftp.arin.net/pub/rr/arin.db.gz
+    //      - ftp://ftp.arin.net/pub/rr/arin-nonauth.db.gz
+    //      - ftp://ftp.lacnic.net/pub/stats/lacnic/delegated-lacnic-extended-latest
+    //      - https://ftp.ripe.net/ripe/dbase/split/ripe.db.inetnum.gz
+    //      - https://ftp.ripe.net/ripe/dbase/split/ripe.db.inet6num.gz
+
     // 3. Download & Extract
     
     // Extract Options
     // ===============
-    // 1. `SQLite` 
-    // 2. `.csv` 
-    // 3. `.xlsx` 
+    // 1. `SQLite` + Compress 
+    // 2. `.csv` + Compress 
+    // 3. `.xlsx` + Compress 
     // 4. `PostgreSQL`
     // 5. others
 
     // Threads
     // =======
     // 1. `ripe.db` entry scanner job - Detects entry lines and duplicates them into the raw entries channel.
+    // 2. `ripe.db` entry parser job - Receives entries from raw entries channel, parsing into parsed entities with work-stealing.
     // 3. SQLite job - Listening on parsed entries channel. Terminates with the channel.
-    // 2. `ripe.db` entry parser job - Receives entries from raw entries channel, parsing into parsed entities.
 
 }
