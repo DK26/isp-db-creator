@@ -20,21 +20,63 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// enum Country {
+//     Unknown(""),
+//     Israel("il"),
+//     USA,
+//     Lithuania
+// }
+
 struct Entry<'a> {
     // Unique Fields: 22:{'country', 'descr', 'remarks', 'admin-c', 'org', 'netname', 'inetnum', 'abuse-c', 'status',
     // 'created', 'geoloc', 'language', 'last-modified', 
     //'source', 'mnt-by', 'mnt-irt', 'mnt-domains', 'mnt-lower', 'mnt-routes', 'tech-c', 'notify', 'sponsoring-org'}
-    from_inetnum: u32,
-    to_inteum: u32,
+    inetnum_from: u32,
+    inteum_to: u32,
+    netname: &'a str,
+    descr: &'a str,
     country: &'a str,
     language: &'a str,
-    descr: &'a str
+    org: &'a str,
+    admin_c: &'a str,
+    tech_c: &'a str,
+    status: &'a str,
+    mnt_by: &'a str,
+    created: u32,
+    last_modified: u32,
+    source: &'a str,
+    remarks: &'a str,
 }
+
+// impl<'a> Default for Entry<'a> {
+
+//     fn default() -> Self {
+//         Self {
+//             inetnum_from: 0,
+//             inteum_to: 0,
+//             country: "",
+//             language: "",
+//             descr: ""
+//         }
+//     }
+
+// }
 
 fn main() {
 
-    // Download RIPE: https://ftp.ripe.net/ripe/dbase/ripe.db.gz
-    //  - Extract
+    // Options
+    // =======
+    // 1. Extract `ripe.db.gz` / `ripe.db`
+    // 2. Download RIPE: https://ftp.ripe.net/ripe/dbase/ripe.db.gz
+    // 3. Download & Extract
+    
+    // Extract Options
+    // ===============
+    // 1. `SQLite` 
+    // 2. `.csv` 
+    // 3. `.xlsx` 
+    // 4. `PostgreSQL`
+    // 5. others
 
     // Threads
     // =======
@@ -42,5 +84,4 @@ fn main() {
     // 3. SQLite job - Listening on parsed entries channel. Terminates with the channel.
     // 2. `ripe.db` entry parser job - Receives entries from raw entries channel, parsing into parsed entities.
 
-    
 }
